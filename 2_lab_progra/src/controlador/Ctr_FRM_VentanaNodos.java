@@ -93,6 +93,10 @@ public class Ctr_FRM_VentanaNodos implements ActionListener{
         if(e.getActionCommand().equals("Reportes"))
         {
             fRM_Reportes.setVisible(true);
+            this.fRM_Reportes.limpiarTablas();
+            this.fRM_Reportes.mostrarInformacionLista(metodosCliente.imprimir());
+            this.fRM_Reportes.mostrarCantidad(""+metodosCliente.devolverCantidadNodos());
+            this.fRM_Reportes.mostrarPromedioEdad(""+metodosCliente.calcularPromedioEdad());
         }   
         
     }

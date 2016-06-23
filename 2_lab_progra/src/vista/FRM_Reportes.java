@@ -19,7 +19,34 @@ public class FRM_Reportes extends javax.swing.JFrame {
         this.setLocation(200, 5);
         
     }
+    
+    public void mostrarInformacionLista(String informacion) {
+        
+        this.jT_InformacionToda.setText(informacion);
+        
+    }
+    
+    public void mostrarPromedioEdad(String informacion) {
+        
+        this.jT_PromedioEdad.setText(informacion);
+        
+    }
+    
+    public void mostrarCantidad(String informacion) {
+        
+        this.jT_CantidadPersonasCola.setText(informacion);
+        
+    }
+    
+    public void limpiarTablas() {
+        
+        this.jT_InformacionToda.setText("");
+        this.jT_PromedioEdad.setText("");
+        this.jT_CantidadPersonasCola.setText("");
+        
+    }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,7 +67,7 @@ public class FRM_Reportes extends javax.swing.JFrame {
         jl_PromedioEdad = new javax.swing.JLabel();
         jl_CantidadPersonasCola = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         jL_Reportes.setBackground(new java.awt.Color(0, 153, 0));
         jL_Reportes.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -48,18 +75,35 @@ public class FRM_Reportes extends javax.swing.JFrame {
         jL_Reportes.setText("REPORTES");
         jL_Reportes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jL_Reportes.setOpaque(true);
+        getContentPane().add(jL_Reportes);
+        jL_Reportes.setBounds(345, 12, 104, 26);
 
+        jT_InformacionToda.setEditable(false);
         jT_InformacionToda.setColumns(20);
         jT_InformacionToda.setRows(5);
+        jT_InformacionToda.setPreferredSize(new java.awt.Dimension(200, 80));
         jScrollPane1.setViewportView(jT_InformacionToda);
 
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(12, 246, 223, 300);
+
+        jT_PromedioEdad.setEditable(false);
         jT_PromedioEdad.setColumns(20);
         jT_PromedioEdad.setRows(5);
+        jT_PromedioEdad.setPreferredSize(new java.awt.Dimension(200, 80));
         jScrollPane2.setViewportView(jT_PromedioEdad);
 
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(253, 246, 223, 300);
+
+        jT_CantidadPersonasCola.setEditable(false);
         jT_CantidadPersonasCola.setColumns(20);
         jT_CantidadPersonasCola.setRows(5);
+        jT_CantidadPersonasCola.setPreferredSize(new java.awt.Dimension(200, 80));
         jScrollPane3.setViewportView(jT_CantidadPersonasCola);
+
+        getContentPane().add(jScrollPane3);
+        jScrollPane3.setBounds(494, 246, 223, 300);
 
         jL_InformacionToda.setBackground(new java.awt.Color(0, 153, 0));
         jL_InformacionToda.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -67,6 +111,8 @@ public class FRM_Reportes extends javax.swing.JFrame {
         jL_InformacionToda.setText("INFORMACIÓN");
         jL_InformacionToda.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jL_InformacionToda.setOpaque(true);
+        getContentPane().add(jL_InformacionToda);
+        jL_InformacionToda.setBounds(55, 179, 129, 26);
 
         jl_PromedioEdad.setBackground(new java.awt.Color(0, 153, 0));
         jl_PromedioEdad.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -74,6 +120,8 @@ public class FRM_Reportes extends javax.swing.JFrame {
         jl_PromedioEdad.setText("PROMEDIO EDAD");
         jl_PromedioEdad.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jl_PromedioEdad.setOpaque(true);
+        getContentPane().add(jl_PromedioEdad);
+        jl_PromedioEdad.setBounds(304, 179, 155, 26);
 
         jl_CantidadPersonasCola.setBackground(new java.awt.Color(0, 153, 0));
         jl_CantidadPersonasCola.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -81,53 +129,8 @@ public class FRM_Reportes extends javax.swing.JFrame {
         jl_CantidadPersonasCola.setText("CANTIDAD");
         jl_CantidadPersonasCola.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jl_CantidadPersonasCola.setOpaque(true);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(345, 345, 345)
-                .addComponent(jL_Reportes)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(jL_InformacionToda)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(jl_PromedioEdad)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jl_CantidadPersonasCola)
-                        .addGap(73, 73, 73))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jL_Reportes)
-                .addGap(141, 141, 141)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jL_InformacionToda)
-                    .addComponent(jl_PromedioEdad)
-                    .addComponent(jl_CantidadPersonasCola))
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(351, Short.MAX_VALUE))
-        );
+        getContentPane().add(jl_CantidadPersonasCola);
+        jl_CantidadPersonasCola.setBounds(559, 179, 94, 26);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

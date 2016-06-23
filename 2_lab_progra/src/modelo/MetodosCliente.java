@@ -350,6 +350,24 @@ public void ordenarMenorAMayor()
         
         return contador;
     }
+    
+    public int calcularPromedioEdad() {
+        
+        int promedioEdad = 0;
+        int totalEdad = 0;
+        Cliente temporal = principal;
+        while(temporal.getSiguiente() != null) {
+            
+            totalEdad+=temporal.getEdad();
+            temporal = temporal.getSiguiente();
+            
+        }
+        
+        promedioEdad = totalEdad / devolverCantidadNodos();
+        
+        return promedioEdad;
+        
+    }
 
     
 }//Fin de la clase MetodosCliente
