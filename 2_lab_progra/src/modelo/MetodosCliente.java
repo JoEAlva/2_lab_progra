@@ -42,27 +42,10 @@ public class MetodosCliente {
         
     }//Fin crear
     
-    public int contar() {
-        
-        Cliente temporal = principal;
-        try {
-            if(temporal.getSiguiente() == null) {
-                return 0;
-            }
-        }catch(NullPointerException e) {
-            System.err.println("Error: " + e);
-            return 0;
-        }
-        int cont = 0;
-        while(temporal.getSiguiente()!=null) {
-            temporal = temporal.getSiguiente();
-            cont++;
-        }
-        cont++;
-        temporal = null;
-        return cont; 
-    }
-    
+    /**
+     * Se encarga de imprimir la lista 
+     * @return 
+     */    
     public String imprimir() {
         
         String valores = "";
@@ -86,8 +69,10 @@ public class MetodosCliente {
         return b;
     }
     
-    
-    
+    /**
+     * Método que sirve para agregar un Cliente al final de la lista
+     * @param vectorInformacion 
+     */
     public void agregarAlFinal(String vectorInformacion[]) {
         
         Cliente temporal = devolverUltimoCliente();
@@ -100,6 +85,9 @@ public class MetodosCliente {
    
     }//Fin agregarAlFinal
     
+    /*
+    Método que se encarga de retornar el ultimo cliente de prioridad alta
+    */
     public void ultimoPrioridadAlta(String vectorInformacion[]) {
         
         Cliente temporal = devolverUltimoPrioridadAlta();
@@ -110,8 +98,12 @@ public class MetodosCliente {
                                           vectorInformacion[3],
                                           null));
         
-    }
+    }//Fin ultimoPrioridadAlta
     
+    /**
+     * Método que se encarga de retornar el último cliente de la lista enlazada
+     * @return 
+     */
     public Cliente devolverUltimoCliente() {
         
         Cliente temporal = principal;
@@ -122,6 +114,10 @@ public class MetodosCliente {
         
     }//Fin devolverUltimoCliente
     
+    /**
+     * Método que se encarga de devolver el último cliente de prioridad Alta
+     * @return 
+     */
     public Cliente devolverUltimoPrioridadAlta() {
         
         Cliente temporal = principal;
@@ -175,42 +171,54 @@ public class MetodosCliente {
      * @param datoEliminar 
      */
     
-//    public void eliminar(int datoEliminar)
-//    {
-//        Cliente auxiliar = principal;
-//        boolean haEliminado=false;
-//        if(auxiliar.dato==datoEliminar)
-//        {
-//            primero=primero.siguiente;
-//            haEliminado=true;
-//        }
-//        else
-//        {
-//            auxiliar=devolverUltimoCliente();
-//            if(auxiliar.dato==datoEliminar)
-//            {
-//                auxiliar=devolverAntepenultimoNodo();
-//                auxiliar.siguiente=null;
-//                haEliminado=true;
-//            }
-//        }
-//        if(!haEliminado)
-//        {
-//            Nodo temporal;
-//            auxiliar=devolverNodoAnterior(datoEliminar);
-//            temporal=auxiliar.siguiente.siguiente;
-//            auxiliar.siguiente=temporal;
-//        }
-//    }
-//    
-//    public Cliente nodoAnterior(int buscarNodo) {
-//        Cliente temporal = principal;
-//        while(temporal.getSiguiente().getDato() != buscarNodo) {
-//            temporal = temporal.getSiguiente();
-//        }
-//        
-//        return temporal;
-//    }
+    public void eliminarCliente(int cedula)
+    {
+        Cliente auxiliar = principal;
+        boolean haEliminado=false;
+        if(auxiliar.cedula == cedula)
+        {
+            principal = principal.siguiente;
+            haEliminado=true;
+        }
+        else
+        {
+            auxiliar=devolverUltimoCliente();
+            if(auxiliar.cedula == cedula)
+            {
+                auxiliar=devolverAntepenultimoNodo();
+                auxiliar.siguiente=null;
+                haEliminado=true;
+            }
+        }
+        if(!haEliminado)
+        {
+            Cliente temporal;
+            auxiliar=devolverNodoAnterior(cedula);
+            temporal=auxiliar.siguiente.siguiente;
+            auxiliar.siguiente=temporal;
+        }
+    }
+    
+    public Cliente devolverNodoAnterior(int cedula)
+    {
+        Cliente auxiliar = principal;
+        while(auxiliar.siguiente.cedula != cedula)
+        {
+            auxiliar=auxiliar.siguiente;
+        }
+        return auxiliar;
+    }
+    
+    
+    public Cliente devolverAntepenultimoNodo()
+    {
+        Cliente auxiliar = principal;
+        while(auxiliar.siguiente.siguiente!=null)
+        {
+            auxiliar=auxiliar.siguiente;
+        }
+        return auxiliar;
+    }
     
     
  /**

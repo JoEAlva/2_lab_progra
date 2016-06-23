@@ -248,6 +248,7 @@ public class FRM_VentanaPrincipal extends javax.swing.JFrame {
 
         jB_MenorMayor.setBackground(new java.awt.Color(255, 255, 255));
         jB_MenorMayor.setText("<");
+        jB_MenorMayor.setActionCommand("MenorMayor");
         jB_MenorMayor.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jB_MenorMayor, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 310, 50, 24));
 

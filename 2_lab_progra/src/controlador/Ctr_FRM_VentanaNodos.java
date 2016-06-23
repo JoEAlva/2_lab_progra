@@ -30,7 +30,13 @@ public class Ctr_FRM_VentanaNodos implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         
         if(e.getActionCommand().equals("MayorMenor")) {
-//            metodosCliente.ordenarMayorAMenor();
+            metodosCliente.ordenarMayorAMenor();
+            fRM_VentanaPrincipal.limpiarInterfaz();
+            fRM_VentanaPrincipal.imprimirEnTextArea(metodosCliente.imprimir());
+        }
+        
+        if(e.getActionCommand().equals("MenorMayor")) {
+            metodosCliente.ordenarMenorAMayor();
             fRM_VentanaPrincipal.limpiarInterfaz();
             fRM_VentanaPrincipal.imprimirEnTextArea(metodosCliente.imprimir());
         }
