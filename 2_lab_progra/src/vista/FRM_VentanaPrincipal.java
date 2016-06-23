@@ -5,6 +5,7 @@
  */
 package vista;
 import controlador.Ctr_FRM_VentanaNodos;
+import vista.FRM_Reportes;
 import javax.swing.JOptionPane;
 import modelo.MetodosCliente;
 /**
@@ -15,10 +16,14 @@ public class FRM_VentanaPrincipal extends javax.swing.JFrame {
 
     //Referencias
     Ctr_FRM_VentanaNodos ctr_FRM_VentanaNodos;
+    FRM_Reportes fRM_Reportes;
     
     public FRM_VentanaPrincipal() {
         initComponents();
-        ctr_FRM_VentanaNodos = new Ctr_FRM_VentanaNodos(this);
+        
+        fRM_Reportes = new FRM_Reportes();
+        ctr_FRM_VentanaNodos = new Ctr_FRM_VentanaNodos(this, fRM_Reportes);
+        
         this.setSize(760, 680);
         this.setLocation(200, 5);
         agregarEventos();
@@ -26,10 +31,14 @@ public class FRM_VentanaPrincipal extends javax.swing.JFrame {
     }
     
     public void agregarEventos() {
+        
         this.jB_RegistrarCita.addActionListener(ctr_FRM_VentanaNodos);
         this.jB_AtenderCliente.addActionListener(ctr_FRM_VentanaNodos);
         this.jB_MayorMenor.addActionListener(ctr_FRM_VentanaNodos);
         this.jB_MenorMayor.addActionListener(ctr_FRM_VentanaNodos);
+        this.jB_Eliminar.addActionListener(ctr_FRM_VentanaNodos);
+        this.jB_Modificar.addActionListener(ctr_FRM_VentanaNodos);
+        this.jB_Reportes.addActionListener(ctr_FRM_VentanaNodos);
         
     }
 
@@ -56,6 +65,23 @@ public class FRM_VentanaPrincipal extends javax.swing.JFrame {
     
     }
     
+    public String[] getDatosModificar() {
+        
+        String[] vector = new String[4];
+
+        vector[0] = this.jT_NombreCliente.getText();
+        vector[1] = this.jT_EdadCliente.getText();
+        vector[2] = ""+this.jC_TipoServicio.getSelectedItem();
+        vector[3] = ""+this.jC_Prioridad.getSelectedItem();
+        
+        return vector;
+    
+    }
+    
+    public String getCedula() {
+        return this.jT_Cedula.getText();
+    }
+    
     public void limpiarInterfaz() {
         
         this.jT_Cedula.setText("");
@@ -64,6 +90,10 @@ public class FRM_VentanaPrincipal extends javax.swing.JFrame {
         this.jC_TipoServicio.setSelectedItem(0);
         this.jC_Prioridad.setSelectedIndex(0);
         
+    }
+    
+    public void limpiarTabla() {
+        this.jT_ClienteEnEspera.setText("");
     }
     
     public void imprimirEnTextArea(String texto) {
@@ -108,6 +138,9 @@ public class FRM_VentanaPrincipal extends javax.swing.JFrame {
         jL_Cedula = new javax.swing.JLabel();
         jT_Cedula = new javax.swing.JTextField();
         jB_MenorMayor = new javax.swing.JButton();
+        jB_Eliminar = new javax.swing.JButton();
+        jB_Modificar = new javax.swing.JButton();
+        jB_Reportes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -155,7 +188,7 @@ public class FRM_VentanaPrincipal extends javax.swing.JFrame {
         jT_NombreCliente.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jT_NombreCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jT_NombreCliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(jT_NombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 220, 24));
+        getContentPane().add(jT_NombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 220, 30));
 
         jT_EdadCliente.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jT_EdadCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -244,13 +277,37 @@ public class FRM_VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().add(jL_Cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 180, -1));
 
         jT_Cedula.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(jT_Cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 220, 24));
+        getContentPane().add(jT_Cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 220, 30));
 
         jB_MenorMayor.setBackground(new java.awt.Color(255, 255, 255));
         jB_MenorMayor.setText("<");
         jB_MenorMayor.setActionCommand("MenorMayor");
         jB_MenorMayor.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jB_MenorMayor, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 310, 50, 24));
+
+        jB_Eliminar.setBackground(new java.awt.Color(0, 153, 0));
+        jB_Eliminar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jB_Eliminar.setForeground(new java.awt.Color(0, 0, 0));
+        jB_Eliminar.setText("ELIMINAR");
+        jB_Eliminar.setActionCommand("Eliminar");
+        jB_Eliminar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(jB_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 110, 190, 30));
+
+        jB_Modificar.setBackground(new java.awt.Color(0, 153, 0));
+        jB_Modificar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jB_Modificar.setForeground(new java.awt.Color(0, 0, 0));
+        jB_Modificar.setText("MODIFICAR");
+        jB_Modificar.setActionCommand("Modificar");
+        jB_Modificar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(jB_Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 150, 190, 30));
+
+        jB_Reportes.setBackground(new java.awt.Color(0, 153, 0));
+        jB_Reportes.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jB_Reportes.setForeground(new java.awt.Color(0, 0, 0));
+        jB_Reportes.setText("REPORTES");
+        jB_Reportes.setActionCommand("Reportes");
+        jB_Reportes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(jB_Reportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 310, 190, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -293,9 +350,12 @@ public class FRM_VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jB_AtenderCliente;
+    private javax.swing.JButton jB_Eliminar;
     private javax.swing.JButton jB_MayorMenor;
     private javax.swing.JButton jB_MenorMayor;
+    private javax.swing.JButton jB_Modificar;
     private javax.swing.JButton jB_RegistrarCita;
+    private javax.swing.JButton jB_Reportes;
     private javax.swing.JComboBox<String> jC_Prioridad;
     private javax.swing.JComboBox<String> jC_TipoServicio;
     private javax.swing.JLabel jLOrdenar;

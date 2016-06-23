@@ -31,7 +31,7 @@ public class MetodosCliente {
             principal = new Cliente(Integer.parseInt(vectorInformacion[0]), vectorInformacion[1], Integer.parseInt(vectorInformacion[2]), vectorInformacion[3], vectorInformacion[4], null); 
         }else {
             //Debería ser comparado con la prioridad y ésta almacenada en un jComboBox
-            if(vectorInformacion[3].equals("Normal")) {
+            if(vectorInformacion[4].equals("Normal")) {
                 agregarAlFinal(vectorInformacion);
             }else {
                 Cliente temporal = new Cliente(Integer.parseInt(vectorInformacion[0]), vectorInformacion[1], Integer.parseInt(vectorInformacion[2]), vectorInformacion[3], vectorInformacion[4], null);
@@ -52,7 +52,7 @@ public class MetodosCliente {
         Cliente temporal = principal;
         
         while(temporal.getSiguiente()!=null) {
-            valores+=temporal.getCedula()+" "+temporal.getNombre()+" "+temporal.getEdad()+" "+temporal.getTipoServicio()+" "+temporal.getPrioridad()+"\n";
+            valores+=temporal.getCedula()+" "+temporal.getNombre()+"-"+temporal.getEdad()+"-"+temporal.getTipoServicio()+"-"+temporal.getPrioridad()+"\n";
             temporal = temporal.getSiguiente();
         }
         valores+=temporal.getCedula()+" "+temporal.getNombre()+"-"+temporal.getEdad()+"-"+temporal.getTipoServicio()+"-"+temporal.getPrioridad();
@@ -76,11 +76,11 @@ public class MetodosCliente {
     public void agregarAlFinal(String vectorInformacion[]) {
         
         Cliente temporal = devolverUltimoCliente();
-        temporal.setSiguiente(new Cliente(Integer.parseInt(vectorInformacion[1]),
-                                          vectorInformacion[0],
-                                          Integer.parseInt(vectorInformacion[1]),
-                                          vectorInformacion[2],
+        temporal.setSiguiente(new Cliente(Integer.parseInt(vectorInformacion[0]),
+                                          vectorInformacion[1],
+                                          Integer.parseInt(vectorInformacion[2]),
                                           vectorInformacion[3],
+                                          vectorInformacion[4],
                                           null));
    
     }//Fin agregarAlFinal
@@ -151,7 +151,7 @@ public class MetodosCliente {
         
         String valores = "";
         Cliente temporal = principal; 
-        valores+=temporal.getNombre()+"-"+temporal.getEdad()+"-"+temporal.getTipoServicio()+"-"+temporal.getPrioridad();
+        valores+=temporal.getCedula()+" "+temporal.getNombre()+"-"+temporal.getEdad()+"-"+temporal.getTipoServicio()+"-"+temporal.getPrioridad();
         return valores;
         
     }
@@ -316,6 +316,26 @@ public void ordenarMenorAMayor()
                 auxiliar = auxiliar.getSiguiente();
             }
         }
+    }
+
+    public void modificar(int cedula, String[] vectorNuevaInformacion)
+    {
+        Cliente auxiliar;
+        auxiliar = buscarNodo(cedula);
+        auxiliar.nombre = vectorNuevaInformacion[0];
+        auxiliar.edad = Integer.parseInt(vectorNuevaInformacion[1]);
+        auxiliar.tipoServicio = vectorNuevaInformacion[2];
+        auxiliar.prioridad = vectorNuevaInformacion[3];
+    }
+    
+    public Cliente buscarNodo(int cedula)
+    {
+        Cliente auxiliar = principal;
+        while(auxiliar.cedula != cedula)
+        {
+            auxiliar = auxiliar.siguiente;
+        }
+        return auxiliar;
     }
 
     public int devolverCantidadNodos()

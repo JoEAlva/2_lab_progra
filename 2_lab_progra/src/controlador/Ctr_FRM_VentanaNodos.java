@@ -10,6 +10,7 @@ import vista.FRM_VentanaPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import modelo.MetodosCliente;
+import vista.FRM_Reportes;
 
 /**
  *
@@ -20,9 +21,12 @@ public class Ctr_FRM_VentanaNodos implements ActionListener{
     //Referencias de la clase
     FRM_VentanaPrincipal fRM_VentanaPrincipal;
     MetodosCliente metodosCliente;
+    FRM_Reportes fRM_Reportes;
+
     
     //Constructor de la clase    
-    public Ctr_FRM_VentanaNodos(FRM_VentanaPrincipal fRM_VentanaPrincipal) {
+    public Ctr_FRM_VentanaNodos(FRM_VentanaPrincipal fRM_VentanaPrincipal, FRM_Reportes fRM_Reportes) {
+        this.fRM_Reportes = fRM_Reportes;
         this.fRM_VentanaPrincipal = fRM_VentanaPrincipal;
         metodosCliente = new MetodosCliente();
     }
@@ -42,7 +46,6 @@ public class Ctr_FRM_VentanaNodos implements ActionListener{
         }
         
         if(e.getActionCommand().equals("GenerarFicha")) {
-            System.out.println("Entró");
             metodosCliente.agregarCliente(fRM_VentanaPrincipal.getDatos());
             fRM_VentanaPrincipal.limpiarInterfaz();
             
@@ -57,10 +60,40 @@ public class Ctr_FRM_VentanaNodos implements ActionListener{
                 fRM_VentanaPrincipal.imprimirEnTextArea(metodosCliente.imprimir());
             }else
             {
+               fRM_VentanaPrincipal.limpiarTabla();
                fRM_VentanaPrincipal.mensajeListaVacia();
             }
-        }       
-
+        }
+        
+        if(e.getActionCommand().equals("Eliminar")) {
+            metodosCliente.eliminarCliente(Integer.parseInt(fRM_VentanaPrincipal.getCedula()));
+            if(!metodosCliente.comprobarLista()) {
+                fRM_VentanaPrincipal.limpiarInterfaz();
+                fRM_VentanaPrincipal.imprimirEnTextArea(metodosCliente.imprimir());
+            }else
+            {
+               fRM_VentanaPrincipal.limpiarTabla();
+               fRM_VentanaPrincipal.mensajeListaVacia();
+            }
+        }
+        
+        if(e.getActionCommand().equals("Modificar")) {
+            
+            metodosCliente.modificar(Integer.parseInt(fRM_VentanaPrincipal.getCedula()), fRM_VentanaPrincipal.getDatosModificar());
+            if(!metodosCliente.comprobarLista()) {
+                fRM_VentanaPrincipal.limpiarInterfaz();
+                fRM_VentanaPrincipal.imprimirEnTextArea(metodosCliente.imprimir());
+            }else
+            {
+               fRM_VentanaPrincipal.limpiarTabla();
+               fRM_VentanaPrincipal.mensajeListaVacia();
+            }
+        }
+        
+        if(e.getActionCommand().equals("Reportes"))
+        {
+            fRM_Reportes.setVisible(true);
+        }   
         
     }
     
