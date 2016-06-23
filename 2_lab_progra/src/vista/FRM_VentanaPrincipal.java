@@ -22,23 +22,35 @@ public class FRM_VentanaPrincipal extends javax.swing.JFrame {
         this.setSize(760, 680);
         this.setLocation(200, 5);
         agregarEventos();
+        addItemComboBox();
     }
     
     public void agregarEventos() {
-        this.jB_GenerarFicha.addActionListener(ctr_FRM_VentanaNodos);
-        this.jB_LlamarCliente.addActionListener(ctr_FRM_VentanaNodos);
+        this.jB_RegistrarCita.addActionListener(ctr_FRM_VentanaNodos);
+        this.jB_AtenderCliente.addActionListener(ctr_FRM_VentanaNodos);
         this.jB_MayorMenor.addActionListener(ctr_FRM_VentanaNodos);
         this.jB_MenorMayor.addActionListener(ctr_FRM_VentanaNodos);
+        
     }
 
+    public void addItemComboBox() {
+        this.jC_Prioridad.removeAllItems();
+        this.jC_Prioridad.addItem("Normal");
+        this.jC_Prioridad.addItem("Alta");
+        this.jC_TipoServicio.removeAllItems();
+        this.jC_TipoServicio.addItem("Caja");
+        this.jC_TipoServicio.addItem("Plataforma");        
+    }
     
     public String[] getDatos() {
         
-        String[] vector = new String[3];
+        String[] vector = new String[5];
 
-        vector[0] = this.jT_NombreCliente.getText();
-        vector[1] = this.jT_EdadCliente.getText();
-        vector[2] = this.jT_NumeroComprobante.getText();
+        vector[0] = this.jT_Cedula.getText();
+        vector[1] = this.jT_NombreCliente.getText();
+        vector[2] = this.jT_EdadCliente.getText();
+        vector[3] = ""+this.jC_TipoServicio.getSelectedItem();
+        vector[4] = ""+this.jC_Prioridad.getSelectedItem();
         
         return vector;
     
@@ -46,9 +58,11 @@ public class FRM_VentanaPrincipal extends javax.swing.JFrame {
     
     public void limpiarInterfaz() {
         
+        this.jT_Cedula.setText("");
         this.jT_NombreCliente.setText("");
         this.jT_EdadCliente.setText("");
-        this.jT_NumeroComprobante.setText("");
+        this.jC_TipoServicio.setSelectedItem(0);
+        this.jC_Prioridad.setSelectedIndex(0);
         
     }
     
@@ -75,22 +89,25 @@ public class FRM_VentanaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jL_Cant_Nodos = new javax.swing.JLabel();
-        jB_GenerarFicha = new javax.swing.JButton();
+        jB_RegistrarCita = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jT_Atendiendo = new javax.swing.JTextArea();
         jL_NombreCliente = new javax.swing.JLabel();
         jT_NombreCliente = new javax.swing.JTextField();
         jT_EdadCliente = new javax.swing.JTextField();
         jL_EdadCliente = new javax.swing.JLabel();
-        jL_NumeroComprobante = new javax.swing.JLabel();
+        jL_TipoServicio = new javax.swing.JLabel();
+        jL_Prioridad = new javax.swing.JLabel();
         jLOrdenar = new javax.swing.JLabel();
         jB_MayorMenor = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jT_ClienteEnEspera = new javax.swing.JTextArea();
-        jB_LlamarCliente = new javax.swing.JButton();
-        jT_NumeroComprobante = new javax.swing.JTextField();
+        jC_Prioridad = new javax.swing.JComboBox<>();
+        jB_AtenderCliente = new javax.swing.JButton();
+        jC_TipoServicio = new javax.swing.JComboBox<>();
+        jL_Cedula = new javax.swing.JLabel();
+        jT_Cedula = new javax.swing.JTextField();
         jB_MenorMayor = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -100,21 +117,21 @@ public class FRM_VentanaPrincipal extends javax.swing.JFrame {
         jL_Cant_Nodos.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jL_Cant_Nodos.setForeground(new java.awt.Color(0, 0, 0));
         jL_Cant_Nodos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jL_Cant_Nodos.setText("SISTEMA DE FICHAS MOPT ");
+        jL_Cant_Nodos.setText("Departamento de Migración");
         jL_Cant_Nodos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jL_Cant_Nodos.setOpaque(true);
         getContentPane().add(jL_Cant_Nodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 670, 30));
 
-        jB_GenerarFicha.setBackground(new java.awt.Color(0, 153, 0));
-        jB_GenerarFicha.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jB_GenerarFicha.setForeground(new java.awt.Color(0, 0, 0));
-        jB_GenerarFicha.setText("CREAR NUEVA CITA");
-        jB_GenerarFicha.setActionCommand("GenerarFicha");
-        jB_GenerarFicha.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jB_GenerarFicha.setFocusPainted(false);
-        jB_GenerarFicha.setFocusable(false);
-        jB_GenerarFicha.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(jB_GenerarFicha, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 570, 220, -1));
+        jB_RegistrarCita.setBackground(new java.awt.Color(0, 153, 0));
+        jB_RegistrarCita.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jB_RegistrarCita.setForeground(new java.awt.Color(0, 0, 0));
+        jB_RegistrarCita.setText("REGISTRAR CITA");
+        jB_RegistrarCita.setActionCommand("GenerarFicha");
+        jB_RegistrarCita.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jB_RegistrarCita.setFocusPainted(false);
+        jB_RegistrarCita.setFocusable(false);
+        jB_RegistrarCita.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(jB_RegistrarCita, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 600, 180, -1));
 
         jT_Atendiendo.setEditable(false);
         jT_Atendiendo.setBackground(new java.awt.Color(204, 204, 204));
@@ -124,7 +141,7 @@ public class FRM_VentanaPrincipal extends javax.swing.JFrame {
         jT_Atendiendo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jScrollPane1.setViewportView(jT_Atendiendo);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 330, 320, 200));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 360, 320, 200));
 
         jL_NombreCliente.setBackground(new java.awt.Color(0, 153, 0));
         jL_NombreCliente.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -133,22 +150,17 @@ public class FRM_VentanaPrincipal extends javax.swing.JFrame {
         jL_NombreCliente.setText("NOMBRE");
         jL_NombreCliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jL_NombreCliente.setOpaque(true);
-        getContentPane().add(jL_NombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 180, 24));
+        getContentPane().add(jL_NombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 180, 24));
 
         jT_NombreCliente.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jT_NombreCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jT_NombreCliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(jT_NombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 220, 24));
+        getContentPane().add(jT_NombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 220, 24));
 
         jT_EdadCliente.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jT_EdadCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jT_EdadCliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jT_EdadCliente.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jT_EdadClienteKeyTyped(evt);
-            }
-        });
-        getContentPane().add(jT_EdadCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 120, 24));
+        getContentPane().add(jT_EdadCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 120, 24));
 
         jL_EdadCliente.setBackground(new java.awt.Color(0, 153, 0));
         jL_EdadCliente.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -157,16 +169,25 @@ public class FRM_VentanaPrincipal extends javax.swing.JFrame {
         jL_EdadCliente.setText("EDAD");
         jL_EdadCliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jL_EdadCliente.setOpaque(true);
-        getContentPane().add(jL_EdadCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 180, 24));
+        getContentPane().add(jL_EdadCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 180, 24));
 
-        jL_NumeroComprobante.setBackground(new java.awt.Color(0, 153, 0));
-        jL_NumeroComprobante.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jL_NumeroComprobante.setForeground(new java.awt.Color(0, 0, 0));
-        jL_NumeroComprobante.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jL_NumeroComprobante.setText("NÚMERO COMROBANTE");
-        jL_NumeroComprobante.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jL_NumeroComprobante.setOpaque(true);
-        getContentPane().add(jL_NumeroComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 180, 24));
+        jL_TipoServicio.setBackground(new java.awt.Color(0, 153, 0));
+        jL_TipoServicio.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jL_TipoServicio.setForeground(new java.awt.Color(0, 0, 0));
+        jL_TipoServicio.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jL_TipoServicio.setText("TIPO DE SERVICIO");
+        jL_TipoServicio.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jL_TipoServicio.setOpaque(true);
+        getContentPane().add(jL_TipoServicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 180, 24));
+
+        jL_Prioridad.setBackground(new java.awt.Color(0, 153, 0));
+        jL_Prioridad.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jL_Prioridad.setForeground(new java.awt.Color(0, 0, 0));
+        jL_Prioridad.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jL_Prioridad.setText("PRIORIDAD");
+        jL_Prioridad.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jL_Prioridad.setOpaque(true);
+        getContentPane().add(jL_Prioridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 180, 24));
 
         jLOrdenar.setBackground(new java.awt.Color(0, 153, 0));
         jLOrdenar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -175,14 +196,14 @@ public class FRM_VentanaPrincipal extends javax.swing.JFrame {
         jLOrdenar.setText("ORDENAR LISTA");
         jLOrdenar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jLOrdenar.setOpaque(true);
-        getContentPane().add(jLOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 180, 24));
+        getContentPane().add(jLOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 180, 24));
 
         jB_MayorMenor.setBackground(new java.awt.Color(255, 255, 255));
         jB_MayorMenor.setForeground(new java.awt.Color(0, 0, 0));
         jB_MayorMenor.setText(">");
         jB_MayorMenor.setActionCommand("MayorMenor");
         jB_MayorMenor.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(jB_MayorMenor, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 50, 24));
+        getContentPane().add(jB_MayorMenor, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, 50, 24));
 
         jT_ClienteEnEspera.setEditable(false);
         jT_ClienteEnEspera.setBackground(new java.awt.Color(204, 204, 204));
@@ -192,38 +213,46 @@ public class FRM_VentanaPrincipal extends javax.swing.JFrame {
         jT_ClienteEnEspera.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jScrollPane2.setViewportView(jT_ClienteEnEspera);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 320, 200));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 320, 200));
 
-        jB_LlamarCliente.setBackground(new java.awt.Color(0, 153, 0));
-        jB_LlamarCliente.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jB_LlamarCliente.setForeground(new java.awt.Color(0, 0, 0));
-        jB_LlamarCliente.setText("LLAMAR CLIENTE");
-        jB_LlamarCliente.setActionCommand("LlamarCliente");
-        jB_LlamarCliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(jB_LlamarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 570, 210, -1));
+        jC_Prioridad.setBackground(new java.awt.Color(255, 255, 255));
+        jC_Prioridad.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jC_Prioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jC_Prioridad.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(jC_Prioridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 120, -1));
 
-        jT_NumeroComprobante.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(jT_NumeroComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 120, 24));
+        jB_AtenderCliente.setBackground(new java.awt.Color(0, 153, 0));
+        jB_AtenderCliente.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jB_AtenderCliente.setForeground(new java.awt.Color(0, 0, 0));
+        jB_AtenderCliente.setText("ATENDER CLIENTE");
+        jB_AtenderCliente.setActionCommand("LlamarCliente");
+        jB_AtenderCliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(jB_AtenderCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 600, 180, -1));
+
+        jC_TipoServicio.setBackground(new java.awt.Color(255, 255, 255));
+        jC_TipoServicio.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jC_TipoServicio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jC_TipoServicio.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(jC_TipoServicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 120, -1));
+
+        jL_Cedula.setBackground(new java.awt.Color(0, 153, 0));
+        jL_Cedula.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jL_Cedula.setForeground(new java.awt.Color(0, 0, 0));
+        jL_Cedula.setText("CÉDULA");
+        jL_Cedula.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jL_Cedula.setOpaque(true);
+        getContentPane().add(jL_Cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 180, -1));
+
+        jT_Cedula.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(jT_Cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 220, 24));
 
         jB_MenorMayor.setBackground(new java.awt.Color(255, 255, 255));
         jB_MenorMayor.setText("<");
-        jB_MenorMayor.setActionCommand("MenorMayor");
         jB_MenorMayor.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(jB_MenorMayor, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 280, 50, 24));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo-billetes.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 680));
+        getContentPane().add(jB_MenorMayor, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 310, 50, 24));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jT_EdadClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jT_EdadClienteKeyTyped
-        // TODO add your handling code here:
-        int k = (int)evt.getKeyChar();
-//        if(k >= 0 || k) {
-//            
-//        }
-    }//GEN-LAST:event_jT_EdadClienteKeyTyped
 
     /**
      * @param args the command line arguments
@@ -262,22 +291,25 @@ public class FRM_VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jB_GenerarFicha;
-    private javax.swing.JButton jB_LlamarCliente;
+    private javax.swing.JButton jB_AtenderCliente;
     private javax.swing.JButton jB_MayorMenor;
     private javax.swing.JButton jB_MenorMayor;
+    private javax.swing.JButton jB_RegistrarCita;
+    private javax.swing.JComboBox<String> jC_Prioridad;
+    private javax.swing.JComboBox<String> jC_TipoServicio;
     private javax.swing.JLabel jLOrdenar;
     private javax.swing.JLabel jL_Cant_Nodos;
+    private javax.swing.JLabel jL_Cedula;
     private javax.swing.JLabel jL_EdadCliente;
     private javax.swing.JLabel jL_NombreCliente;
-    private javax.swing.JLabel jL_NumeroComprobante;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jL_Prioridad;
+    private javax.swing.JLabel jL_TipoServicio;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jT_Atendiendo;
+    private javax.swing.JTextField jT_Cedula;
     private javax.swing.JTextArea jT_ClienteEnEspera;
     private javax.swing.JTextField jT_EdadCliente;
     private javax.swing.JTextField jT_NombreCliente;
-    private javax.swing.JTextField jT_NumeroComprobante;
     // End of variables declaration//GEN-END:variables
 }

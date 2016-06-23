@@ -29,7 +29,14 @@ public class Ctr_FRM_VentanaNodos implements ActionListener{
 
     public void actionPerformed(ActionEvent e) {
         
+        if(e.getActionCommand().equals("MayorMenor")) {
+//            metodosCliente.ordenarMayorAMenor();
+            fRM_VentanaPrincipal.limpiarInterfaz();
+            fRM_VentanaPrincipal.imprimirEnTextArea(metodosCliente.imprimir());
+        }
+        
         if(e.getActionCommand().equals("GenerarFicha")) {
+            System.out.println("Entró");
             metodosCliente.agregarCliente(fRM_VentanaPrincipal.getDatos());
             fRM_VentanaPrincipal.limpiarInterfaz();
             
@@ -44,25 +51,10 @@ public class Ctr_FRM_VentanaNodos implements ActionListener{
                 fRM_VentanaPrincipal.imprimirEnTextArea(metodosCliente.imprimir());
             }else
             {
-               fRM_VentanaPrincipal.imprimirEnTextArea(metodosCliente.imprimir());
                fRM_VentanaPrincipal.mensajeListaVacia();
             }
-        } 
-        
-        if(e.getActionCommand().equals("MayorMenor")) {
-            
-            metodosCliente.ordenarMayorAMenor();
-            fRM_VentanaPrincipal.imprimirEnTextArea(metodosCliente.imprimir());
- 
-            
-        }
-        
-        if(e.getActionCommand().equals("MenorMayor")) {
-            
-            metodosCliente.ordenarMenorAMayor();
-            fRM_VentanaPrincipal.imprimirEnTextArea(metodosCliente.imprimir());
-            
-        } 
+        }       
+
         
     }
     

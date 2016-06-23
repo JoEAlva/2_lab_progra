@@ -9,26 +9,30 @@ package modelo;
  *
  * @author JorgeIgnacio
  */
-public class Persona {
+public class Cliente {
     
+    public int cedula = 0;
     public String nombre = "";
     public int edad = 0;
-    public String numeroComprobante = "";
+    public String tipoServicio = "";
+    public String prioridad = "";
     
-    public Persona siguiente;
+    public Cliente siguiente;
 
-    public Persona(String nombre, int edad, String tipoServicio, Persona siguiente) {
+    public Cliente(int cedula, String nombre, int edad, String tipoServicio, String prioridad, Cliente siguiente) {
+        this.cedula = cedula;
         this.nombre = nombre;
         this.edad = edad;
-        this.numeroComprobante = tipoServicio;
+        this.tipoServicio = tipoServicio;
+        this.prioridad = prioridad;
         this.siguiente = siguiente;
     }
     
-    public Persona getSiguiente() {
+    public Cliente getSiguiente() {
         return siguiente;
     }
 
-    public void setSiguiente(Persona siguiente) {
+    public void setSiguiente(Cliente siguiente) {
         this.siguiente = siguiente;
     }
 
@@ -49,16 +53,27 @@ public class Persona {
     }
 
     public String getTipoServicio() {
-        return numeroComprobante;
+        return tipoServicio;
     }
 
     public void setTipoServicio(String tipoServicio) {
-        this.numeroComprobante = tipoServicio;
+        this.tipoServicio = tipoServicio;
     }
 
-    public String getNumeroComprobante() {
-        return numeroComprobante;
+    public String getPrioridad() {
+        return prioridad;
     }
 
+    public void setPrioridad(String prioridad) {
+        this.prioridad = prioridad;
+    }
+
+    public int getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(int cedula) {
+        this.cedula = cedula;
+    }
     
-}//Fin de la clase Persona
+}//Fin de la clase Cliente
