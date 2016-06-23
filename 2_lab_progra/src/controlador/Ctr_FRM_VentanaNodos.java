@@ -29,6 +29,8 @@ public class Ctr_FRM_VentanaNodos implements ActionListener{
         this.fRM_Reportes = fRM_Reportes;
         this.fRM_VentanaPrincipal = fRM_VentanaPrincipal;
         metodosCliente = new MetodosCliente();
+        
+        
     }
 
     public void actionPerformed(ActionEvent e) {

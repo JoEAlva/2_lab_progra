@@ -78,6 +78,14 @@ public class FRM_VentanaPrincipal extends javax.swing.JFrame {
     
     }
     
+    public void deshabilitarBotonReportes() {
+        this.jB_Reportes.setEnabled(false);
+    }
+    
+    public void habilitarBotonReportes() {
+        this.jB_Reportes.setEnabled(true);
+    }
+    
     public String getCedula() {
         return this.jT_Cedula.getText();
     }
